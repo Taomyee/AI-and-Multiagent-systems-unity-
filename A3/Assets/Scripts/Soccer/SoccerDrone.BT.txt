@@ -1,0 +1,70 @@
+tree("Root")
+	tree("Attack")
+
+// this is a comment
+tree("Attack")
+	fallback
+		sequence
+			AttackFormation
+			//PrintIfCloserToBallThanEnemy(true)
+			fallback
+				sequence
+					CurrentRobotclosest
+					fallback
+						sequence
+							AngleOnFreeGoal
+							Shoot
+						sequence
+							EnemyArriving
+							Challenge
+						Dribble
+				sequence
+					Backup
+					GoBackup
+				GoSolution
+		//PrintIfCloserToBallThanEnemy(false)
+		tree("defend")
+
+tree("defend")
+	fallback
+		sequence
+			CloseToBallAndFreeSpace
+			ShootClearance
+		sequence
+			IsLastDefender
+			ShadowDefense
+		sequence
+			InOurHalfField
+			fallback
+				sequence
+					CurrentRobotclosest
+					Challenge
+				sequence
+					FrontPost
+					GoFrontPost
+				RotateBackPost
+		
+		fallback
+			sequence
+				CurrentRobotclosest
+				Challenge
+			sequence
+				Backup
+				GoBackup
+			GoSolution
+// tree("version1")
+//	fallback
+//		sequence
+//			IsGoalie
+//			Defend 0.3
+//		sequence
+//			IsChaser
+//			tree("Chaser")
+//		Defend 0.7
+
+// tree("Chaser")
+//	fallback
+//		sequence
+//			IsBallCloserThan 10.0
+//			Dribble
+//		InterceptBall
